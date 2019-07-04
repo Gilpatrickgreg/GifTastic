@@ -1,0 +1,28 @@
+form {
+   float: right;
+   margin-right: 10%;
+}
+
+button {
+    margin:25px 10px 10px 10px;
+    background-color:gray;
+    height: 40px;
+    width: 120px;
+}
+#movieButtons {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+#movie-input{
+    width:200px;
+}
+
+label {
+    color:gold;
+}
+
+#submit {
+    background-color: hotpink;
+}
