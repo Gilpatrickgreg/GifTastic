@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //declaring variable topics to hold array of strings
-    var topics = ["The Notebook", "Mr Nobody", "The Lion King", "The Matrix"];
+    var topics = ["Fight Club", "Mr Nobody", "The Lion King", "The Matrix"];
   //adds strings from topics variable and makes them buttons
     addButtons();
 
@@ -27,14 +27,28 @@ $(document).ready(function() {
                 var gifDiv = $("<div>");
                 var p = $("<p>").text("Rating: " + results[i].rating);
                 var gifImage = $("<img>");
-            // Setting the src attribute of the image to a property pulled off the result item
+        
+            
             gifImage.attr("src", results[i].images.fixed_height_still.url)
             gifDiv.append(p);
             gifDiv.append(gifImage);
             $("#images").prepend(gifDiv);
-           }
+            }
         }); 
           
+      });
+
+      $(".gif").on("click", "img", function() {
+        var state = $(this).attr("data-state");
+        console.log(state)
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("data-animate"));
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("data-still"));
+          $(this).attr("data-state", "still");
+        }
+    
       });
 
       $("#submit").click( function(event) {
@@ -45,18 +59,6 @@ $(document).ready(function() {
         addButtons()
         clear()
     });
-
-      $("#images").on("click", "img", function() {
-        var state = $(this).attr("data-state");
-       
-        if (state === "still") {
-          $(this).attr("src", $(this).attr("data-animate"));
-          $(this).attr("data-state", "animate");
-        } else {
-          $(this).attr("src", $(this).attr("data-still"));
-          $(this).attr("data-state", "still");
-        }
-      });
      
 
       function addButtons () {
