@@ -26,21 +26,26 @@ $(document).ready(function() {
 
                 var gifDiv = $("<div>");
                 var p = $("<p>").text("Rating: " + results[i].rating);
-                var gifImage = $("<img>");
+                var gifImage = $("<img>").addClass("gif");
         
             
             gifImage.attr("src", results[i].images.fixed_height_still.url)
+            gifImage.attr("data-animate", results[i].images.fixed_height.url)
+            gifImage.attr("data-still", results[i].images.fixed_height_still.url)
+            gifImage.attr("data-state", "still")
             gifDiv.append(p);
             gifDiv.append(gifImage);
             $("#images").prepend(gifDiv);
             }
-        }); 
           
-      });
+        });
 
-      $(".gif").on("click", "img", function() {
+     
+    });
+
+
+      $("#images").on("click",".gif", function() {
         var state = $(this).attr("data-state");
-        console.log(state)
         if (state === "still") {
           $(this).attr("src", $(this).attr("data-animate"));
           $(this).attr("data-state", "animate");
@@ -48,8 +53,8 @@ $(document).ready(function() {
           $(this).attr("src", $(this).attr("data-still"));
           $(this).attr("data-state", "still");
         }
-    
-      });
+        console.log(this)
+    }); 
 
       $("#submit").click( function(event) {
         event.preventDefault();
